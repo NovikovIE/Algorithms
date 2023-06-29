@@ -35,8 +35,9 @@ Graph::Graph(size_t n, const vector<pair<size_t, size_t>>& edges)
 vector<size_t> Graph::find_cycle() {
     bool is_cycles_in_graph = false;
     for (size_t i = 0; i < data.size(); ++i) {
-        if (color[i] != Color::WHITE)
+        if (color[i] != Color::WHITE) {
             continue;
+        }
         dfs(i);
         if (cycle_start != -1) {
             is_cycles_in_graph = true;

@@ -36,10 +36,11 @@ Graph::Graph(const vector<size_t>& ancestors)
       t_out(ancestors.size()),
       color(ancestors.size(), Color::WHITE) {
     for (size_t i = 0; i < ancestors.size(); ++i) {
-        if (!ancestors[i])
+        if (!ancestors[i]) {
             root = i;
-        else
+        } else {
             data[ancestors[i] - 1].push_back(i);
+        }
     }
     timer = 0;
     dfs(root);
@@ -49,8 +50,9 @@ void Graph::dfs(size_t v) {
     t_in[v] = timer++;
     color[v] = Color::GRAY;
     for (size_t& elem : data[v]) {
-        if (color[elem] != Color::WHITE)
+        if (color[elem] != Color::WHITE) {
             continue;
+        }
         dfs(elem);
     }
     t_out[v] = timer++;

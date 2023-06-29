@@ -33,10 +33,12 @@ Graph::Graph(size_t n, const vector<pair<size_t, size_t>>& edges) : data(n, vect
 
 vector<size_t> Graph::topological_sort() {
     for (size_t i = 0; i < data.size(); ++i) {
-        if (is_cyclic)
+        if (is_cyclic) {
             break;
-        if (color[i] == Color::WHITE)
+        }
+        if (color[i] == Color::WHITE) {
             dfs(i);
+        }
     }
     if (is_cyclic) {
         sorted.clear();

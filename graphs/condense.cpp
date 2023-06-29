@@ -45,14 +45,16 @@ pair<int, set<pair<size_t, size_t>>> Graph::condense() {
     }
     int clr = 0;
     for (size_t i = 0; i < inverted_data.size(); ++i) {
-        if (color[order[inverted_data.size() - i - 1]] == -1)
+        if (color[order[inverted_data.size() - i - 1]] == -1) {
             dfs_for_inverted(order[inverted_data.size() - i - 1], clr++);
+        }
     }
     set<pair<size_t, size_t>> new_edges;
     for (size_t i = 0; i < data.size(); ++i) {
         for (auto item : data[i]) {
-            if (color[i] != color[item])
+            if (color[i] != color[item]) {
                 new_edges.insert({color[i], color[item]});
+            }
         }
     }
     return {clr, new_edges};
@@ -61,8 +63,9 @@ pair<int, set<pair<size_t, size_t>>> Graph::condense() {
 void Graph::dfs(size_t v) {
     used[v] = true;
     for (size_t& elem : data[v]) {
-        if (!used[elem])
+        if (!used[elem]) {
             dfs(elem);
+        }
     }
     order.push_back(v);
 }
@@ -70,7 +73,8 @@ void Graph::dfs(size_t v) {
 void Graph::dfs_for_inverted(size_t v, int clr) {
     color[v] = clr;
     for (size_t& elem : inverted_data[v]) {
-        if (color[elem] == -1)
+        if (color[elem] == -1) {
             dfs_for_inverted(elem, clr);
+        }
     }
 }
