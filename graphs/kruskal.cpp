@@ -11,7 +11,7 @@ using std::vector;
 
 class DisjointSetUnion {
 public:
-    explicit DisjointSetUnion(long long n) : parent(vector<long long>(n, -1)), size(n, 1) {}
+    explicit DisjointSetUnion(long long n) : parent(n, -1), size(n, 1) {}
     long long find_set(long long a);
     void unite_sets(long long a, long long b);
 
